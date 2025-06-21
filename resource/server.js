@@ -86,7 +86,7 @@ function auth(req, res, next) {
 app.post('/login', (req, res) => {
   const { user_id } = req.body;
   if (!user_id) return res.status(400).json({ error: 'user_id is required' });
-  const payload = { user_id, iat: Date.now() };  writeLog({ userId: user_id, endpoint: '/login', token, label: 'normal' });
+  const payload = { user_id, iat: Date.now() };
   const token = jwt.sign(payload, SECRET, { expiresIn: '1h' });
   writeLog({ userId: user_id, endpoint: '/login', payload, label: 'normal' });
   res.json({ token });
